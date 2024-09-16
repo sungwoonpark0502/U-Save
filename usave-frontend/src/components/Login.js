@@ -1,4 +1,3 @@
-// src/components/Login.js
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
@@ -9,10 +8,12 @@ const Login = ({ setToken }) => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [isRegistering, setIsRegistering] = useState(false);
+    const [error, setError] = useState(''); // State for error messages
     const navigate = useNavigate();
 
     const handleLogin = async (e) => {
         e.preventDefault();
+        setError(''); // Clear previous error messages
         try {
             const response = await axios.post('http://localhost:5003/api/users/login', {
                 username,
@@ -22,6 +23,12 @@ const Login = ({ setToken }) => {
             localStorage.setItem('token', response.data.token);
             navigate('/expenses');
         } catch (error) {
+            // Set error message based on the response
+            if (error.response && error.response.status === 401) {
+                setError('Invalid username or password. Please try again.'); // Set error message for 401 status
+            } else {
+                setError('An error occurred. Please try again later.'); // Generic error message
+            }
             console.error('Login error:', error);
         }
     };
@@ -48,9 +55,14 @@ const Login = ({ setToken }) => {
                         required
                     />
                     <button type="submit">Login</button>
+                    {error && <p style={{ color: 'red' }}>{error}</p>} {/* Display error message */}
                     <p>
                         Don't have an account?{' '}
-                        <button type="button" onClick={() => setIsRegistering(true)} style={{ background: 'none', border: 'none', color: '#007aff', cursor: 'pointer' }}>
+                        <button 
+                            type="button" 
+                            onClick={() => setIsRegistering(true)} 
+                            style={{ background: 'none', border: 'none', color: '#007aff', cursor: 'pointer' }}
+                        >
                             Register here
                         </button>
                     </p>

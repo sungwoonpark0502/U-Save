@@ -10,8 +10,8 @@ const Register = ({ onSwitchToLogin }) => {
 
     const handleRegister = async (e) => {
         e.preventDefault();
-        setError('');  // Reset error message
-        setSuccess('');  // Reset success message
+        setError('');
+        setSuccess('');
 
         try {
             const response = await axios.post('http://localhost:5003/api/users/register', {
@@ -34,7 +34,7 @@ const Register = ({ onSwitchToLogin }) => {
     };
 
     return (
-        <div className="container">
+        <div className="container"> {/* Apply the common container class */}
             <h2>Register</h2>
             <form onSubmit={handleRegister}>
                 <input
@@ -52,8 +52,8 @@ const Register = ({ onSwitchToLogin }) => {
                     required
                 />
                 <button type="submit">Register</button>
-                {error && <p style={{ color: 'red' }}>{error}</p>} {/* Display error message */}
-                {success && <p style={{ color: 'green' }}>{success}</p>} {/* Display success message */}
+                {error && <p style={{ color: 'red' }}>{error}</p>}
+                {success && <p style={{ color: 'green' }}>{success}</p>}
             </form>
             <button 
                 onClick={onSwitchToLogin} 
