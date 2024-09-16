@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import './ExpenseList.css'; // Import the CSS file
 
 const ExpenseList = ({ token, setToken }) => {
     const [expenses, setExpenses] = useState([]);
@@ -90,7 +91,7 @@ const ExpenseList = ({ token, setToken }) => {
     };
 
     return (
-        <div>
+        <div className="expense-list-container"> {/* Use the new class for centering */}
             <h2>Expense List</h2>
 
             <div style={{ marginBottom: '20px' }}>
@@ -127,12 +128,14 @@ const ExpenseList = ({ token, setToken }) => {
                 <p>Percentage Used: {percentageUsed}%</p>
             </div>
 
-            <button onClick={() => navigate('/add-expense')} style={{ float: 'right' }}>
-                Add Expense
-            </button>
-            <button onClick={handleLogout} style={{ float: 'right', marginRight: '10px' }}>
-                Logout
-            </button>
+            <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '20px' }}>
+                <button onClick={() => navigate('/add-expense')}>
+                    Add Expense
+                </button>
+                <button onClick={handleLogout} style={{ marginLeft: '10px' }}>
+                    Logout
+                </button>
+            </div>
 
             <ul>
                 {filteredExpenses.length > 0 ? (

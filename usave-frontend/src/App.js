@@ -22,8 +22,8 @@ const App = () => {
 
     return (
         <Router>
-            <div>
-                <h1>USave - Expense Tracker</h1>
+            <div className="app-container">
+                <h1>USave</h1>
                 <Routes>
                     <Route
                         path="/login"

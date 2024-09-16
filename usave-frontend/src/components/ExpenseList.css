@@ -1,5 +1,5 @@
-/* src/components/AddExpense.css */
-.add-expense-container {
+/* src/components/ExpenseList.css */
+.expense-list-container {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -16,15 +16,10 @@ h2 {
     margin-bottom: 20px;
 }
 
-form {
-    display: flex;
-    flex-direction: column;
-    align-items: center; /* Center elements horizontally */
-}
-
+select,
 input {
     width: 100%;
-    max-width: 300px; /* Center and limit input width */
+    max-width: 300px; /* Center and limit input and select width */
     padding: 10px;
     margin-bottom: 15px;
     border: 1px solid #d1d1d6;
@@ -42,9 +37,25 @@ button {
     cursor: pointer;
     font-size: 16px;
     transition: background-color 0.3s;
-    width: 100%; /* Full width button */
+    margin: 5px; /* Space between buttons */
 }
 
 button:hover {
     background-color: #0051a8; /* Darker blue on hover */
+}
+
+ul {
+    list-style-type: none; /* Remove default list styling */
+    padding: 0;
+    text-align: center; /* Center align list items */
+}
+
+li {
+    margin-bottom: 10px; /* Space between list items */
+}
+
+p {
+    margin-top: 10px;
+    font-size: 16px;
+    text-align: center; /* Center align text */
 }
