@@ -3,12 +3,13 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import Register from './Register';
+import './Login.css'; // Import CSS for specific styling
 
 const Login = ({ setToken }) => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [isRegistering, setIsRegistering] = useState(false);
-    const navigate = useNavigate(); // Hook for navigation
+    const navigate = useNavigate();
 
     const handleLogin = async (e) => {
         e.preventDefault();
@@ -19,14 +20,14 @@ const Login = ({ setToken }) => {
             });
             setToken(response.data.token);
             localStorage.setItem('token', response.data.token);
-            navigate('/expenses'); // Redirect to Expense List on successful login
+            navigate('/expenses');
         } catch (error) {
             console.error('Login error:', error);
         }
     };
 
     return (
-        <div>
+        <div className="container">
             {isRegistering ? (
                 <Register onSwitchToLogin={() => setIsRegistering(false)} />
             ) : (
@@ -49,7 +50,7 @@ const Login = ({ setToken }) => {
                     <button type="submit">Login</button>
                     <p>
                         Don't have an account?{' '}
-                        <button type="button" onClick={() => setIsRegistering(true)}>
+                        <button type="button" onClick={() => setIsRegistering(true)} style={{ background: 'none', border: 'none', color: '#007aff', cursor: 'pointer' }}>
                             Register here
                         </button>
                     </p>
