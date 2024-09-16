@@ -16,34 +16,34 @@ const ExpenseList = ({ token, setToken }) => {
     const [totalSpent, setTotalSpent] = useState(0);
     const navigate = useNavigate();
 
+    const fetchExpenses = async () => {
+        try {
+            const response = await axios.get('http://localhost:5003/api/expenses', {
+                headers: {
+                    'Authorization': `Bearer ${token}`,
+                },
+            });
+
+            const sortedExpenses = response.data.sort((a, b) => new Date(a.date) - new Date(b.date));
+            setExpenses(sortedExpenses);
+            setFilteredExpenses(sortedExpenses);
+
+            const uniqueYears = [...new Set(sortedExpenses.map(expense => new Date(expense.date).getFullYear()))];
+            const uniqueMonths = [...Array(12).keys()].map(i => i + 1); // Generate months 1-12
+
+            setYears(uniqueYears);
+            setMonths(uniqueMonths);
+
+            calculateTotalSpent(sortedExpenses);
+            calculateBudget(sortedExpenses); // Initial budget calculation
+        } catch (error) {
+            console.error('Error fetching expenses:', error);
+        }
+    };
+
     useEffect(() => {
-        const fetchExpenses = async () => {
-            try {
-                const response = await axios.get('http://localhost:5003/api/expenses', {
-                    headers: {
-                        'Authorization': `Bearer ${token}`,
-                    },
-                });
-
-                const sortedExpenses = response.data.sort((a, b) => new Date(a.date) - new Date(b.date));
-                setExpenses(sortedExpenses);
-                setFilteredExpenses(sortedExpenses);
-
-                const uniqueYears = [...new Set(sortedExpenses.map(expense => new Date(expense.date).getFullYear()))];
-                const uniqueMonths = [...Array(12).keys()].map(i => i + 1); // Generate months 1-12
-
-                setYears(uniqueYears);
-                setMonths(uniqueMonths);
-
-                calculateTotalSpent(sortedExpenses);
-                calculateBudget(sortedExpenses); // Initial budget calculation
-            } catch (error) {
-                console.error('Error fetching expenses:', error);
-            }
-        };
-
         fetchExpenses();
-    }, [token]);
+    }, [token]); // Fetch expenses when the token changes
 
     const handleYearChange = (e) => {
         const year = e.target.value;
