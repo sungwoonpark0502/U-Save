@@ -94,6 +94,11 @@ const ExpenseList = ({ token, setToken }) => {
         <div className="expense-list-container"> {/* Use the new class for centering */}
             <h2>Expense List</h2>
 
+            {/* Logout button */}
+            <button className="logout-button" onClick={handleLogout}>
+                Logout
+            </button>
+
             <div style={{ marginBottom: '20px' }}>
                 <label htmlFor="year">Year: </label>
                 <select id="year" value={selectedYear} onChange={handleYearChange}>
@@ -131,9 +136,6 @@ const ExpenseList = ({ token, setToken }) => {
             <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '20px' }}>
                 <button onClick={() => navigate('/add-expense')}>
                     Add Expense
-                </button>
-                <button onClick={handleLogout} style={{ marginLeft: '10px' }}>
-                    Logout
                 </button>
             </div>
 

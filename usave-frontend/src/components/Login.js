@@ -2,6 +2,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import Register from './Register';
 import './Login.css'; // Import CSS for specific styling
 
 const Login = ({ setToken }) => {
@@ -27,41 +28,34 @@ const Login = ({ setToken }) => {
 
     return (
         <div className="container">
-            <form onSubmit={isRegistering ? undefined : handleLogin}>
-                <h2>{isRegistering ? 'Register' : 'Login'}</h2>
-                <input
-                    type="text"
-                    value={username}
-                    onChange={(e) => setUsername(e.target.value)}
-                    placeholder="Username"
-                    required
-                />
-                <input
-                    type="password"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                    placeholder="Password"
-                    required
-                />
-                <button type="submit">{isRegistering ? 'Register' : 'Login'}</button>
-                <p>
-                    {isRegistering ? (
-                        <>
-                            Already have an account?{' '}
-                            <button type="button" onClick={() => setIsRegistering(false)} style={{ background: 'none', border: 'none', color: '#007aff', cursor: 'pointer' }}>
-                                Log in here
-                            </button>
-                        </>
-                    ) : (
-                        <>
-                            Don't have an account?{' '}
-                            <button type="button" onClick={() => setIsRegistering(true)} style={{ background: 'none', border: 'none', color: '#007aff', cursor: 'pointer' }}>
-                                Register here
-                            </button>
-                        </>
-                    )}
-                </p>
-            </form>
+            {isRegistering ? (
+                <Register onSwitchToLogin={() => setIsRegistering(false)} />
+            ) : (
+                <form onSubmit={handleLogin}>
+                    <h2>Login</h2>
+                    <input
+                        type="text"
+                        value={username}
+                        onChange={(e) => setUsername(e.target.value)}
+                        placeholder="Username"
+                        required
+                    />
+                    <input
+                        type="password"
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
+                        placeholder="Password"
+                        required
+                    />
+                    <button type="submit">Login</button>
+                    <p>
+                        Don't have an account?{' '}
+                        <button type="button" onClick={() => setIsRegistering(true)} style={{ background: 'none', border: 'none', color: '#007aff', cursor: 'pointer' }}>
+                            Register here
+                        </button>
+                    </p>
+                </form>
+            )}
         </div>
     );
 };

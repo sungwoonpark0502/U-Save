@@ -1,4 +1,3 @@
-// src/components/Register.js
 import React, { useState } from 'react';
 import axios from 'axios';
 import './Register.css'; // Import CSS for specific styling
@@ -11,8 +10,8 @@ const Register = ({ onSwitchToLogin }) => {
 
     const handleRegister = async (e) => {
         e.preventDefault();
-        setError('');
-        setSuccess('');
+        setError('');  // Reset error message
+        setSuccess('');  // Reset success message
 
         try {
             const response = await axios.post('http://localhost:5003/api/users/register', {
@@ -20,16 +19,14 @@ const Register = ({ onSwitchToLogin }) => {
                 password,
             });
 
-            if (response.data.success) {
+            if (response.status === 201) {
                 setSuccess('Registration successful! You can now log in.');
                 setUsername('');
                 setPassword('');
-            } else {
-                setError('Registration failed. Please try again.');
             }
         } catch (err) {
-            if (err.response && err.response.status === 409) {
-                setError('An account with this username already exists.');
+            if (err.response) {
+                setError(err.response.data.message || 'Registration failed. Please try again.');
             } else {
                 setError('An error occurred. Please try again later.');
             }
@@ -55,10 +52,13 @@ const Register = ({ onSwitchToLogin }) => {
                     required
                 />
                 <button type="submit">Register</button>
-                {error && <p style={{ color: 'red' }}>{error}</p>}
-                {success && <p style={{ color: 'green' }}>{success}</p>}
+                {error && <p style={{ color: 'red' }}>{error}</p>} {/* Display error message */}
+                {success && <p style={{ color: 'green' }}>{success}</p>} {/* Display success message */}
             </form>
-            <button onClick={onSwitchToLogin} style={{ marginTop: '15px', background: 'none', border: 'none', color: '#007aff', cursor: 'pointer' }}>
+            <button 
+                onClick={onSwitchToLogin} 
+                style={{ marginTop: '15px', background: 'none', border: 'none', color: '#007aff', cursor: 'pointer' }}
+            >
                 Already have an account? Log in
             </button>
         </div>
