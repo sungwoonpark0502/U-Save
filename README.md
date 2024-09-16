@@ -63,5 +63,3 @@ Contributions are welcome! Please feel free to submit a pull request or open an 
 10. **Start the frontend application:**
    ```bash
    npm start
-
-# U-Save
