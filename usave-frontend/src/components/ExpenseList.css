@@ -76,3 +76,14 @@ p {
     cursor: pointer; /* Pointer cursor */
     padding: 10px 0; /* Padding for the button */
 }
+.delete-icon {
+    color: red; /* Change color to red */
+    cursor: pointer; /* Change cursor to pointer */
+    margin-left: 10px; /* Add space between expense and the delete icon */
+    font-size: 20px; /* Adjust size as needed */
+    transition: opacity 0.2s ease; /* Smooth transition for hover effect */
+}
+
+.delete-icon:hover {
+    opacity: 0.5; /* Make the icon transparent on hover */
+}

@@ -38,7 +38,7 @@ exports.editExpense = (req, res) => {
 
 // Delete Expense
 exports.deleteExpense = (req, res) => {
-    const { id } = req.body; // Expecting the ID of the expense to delete
+    const { id } = req.params; // Change here to read ID from URL parameters
 
     console.log('Deleting expense with ID:', id); // Log the ID
     console.log('User ID from token:', req.user.id); // Log the user ID
@@ -55,5 +55,6 @@ exports.deleteExpense = (req, res) => {
         res.json({ message: 'Expense deleted successfully' });
     });
 };
+
 
 

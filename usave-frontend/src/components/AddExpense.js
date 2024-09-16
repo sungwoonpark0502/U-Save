@@ -47,7 +47,7 @@ const AddExpense = ({ token, onAdd }) => {
                     type="number"
                     value={amount}
                     onChange={(e) => setAmount(e.target.value)}
-                    placeholder="Amount"
+                    placeholder="$"
                     required
                 />
                 <input
