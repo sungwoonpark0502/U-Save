@@ -102,3 +102,33 @@ p {
 .delete-icon:hover {
     opacity: 0.5; /* Make the icon transparent on hover */
 }
+.edit-icon {
+    color: blue; /* Change to a color of your choice */
+    font-size: 20px; /* Adjust size as needed */
+    transition: opacity 0.2s ease; /* Smooth transition for hover effect */
+}
+
+.edit-icon:hover {
+    opacity: 0.7; /* Make the icon slightly transparent on hover */
+}
+/* src/components/ExpenseList.css */
+
+.edit-icon {
+    color: rgb(86, 86, 86); /* White text color */
+    border: none; /* Remove border */
+    border-radius: 4px; /* Rounded corners */
+    padding: 8px; /* Add some padding */
+    cursor: pointer; /* Change cursor on hover */
+    font-size: 24px; /* Font size for the icon */
+    transition: background-color 0.3s; /* Smooth background color transition */
+}
+
+.edit-icon:hover {
+    background-color: transparent; /* Lighter gray on hover */
+}
+
+.delete-icon {
+    color: red; /* Red color for delete icon */
+    font-size: 24px; /* Font size for the icon */
+    cursor: pointer; /* Change cursor on hover */
+}

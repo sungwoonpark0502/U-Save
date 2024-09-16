@@ -100,7 +100,6 @@ const ExpenseList = ({ token, setToken }) => {
         }
     };
     
-
     const handleDelete = async (id) => {
         console.log('Attempting to delete expense with ID:', id);
 
@@ -126,6 +125,10 @@ const ExpenseList = ({ token, setToken }) => {
         } catch (error) {
             console.error('Error deleting expense:', error.response ? error.response.data : error.message);
         }
+    };
+
+    const handleEdit = (id) => {
+        navigate(`/edit-expense/${id}`); // Navigate to the edit page with the expense ID
     };
 
     const handleLogout = () => {
@@ -182,13 +185,24 @@ const ExpenseList = ({ token, setToken }) => {
                     filteredExpenses.map(expense => (
                         <li key={expense.id} style={{ display: 'flex', alignItems: 'center' }}>
                             {expense.name}: ${expense.amount} on {new Date(expense.date).toLocaleDateString()}
-                            <span 
-                                className="delete-icon" 
-                                onClick={() => handleDelete(expense.id)} 
-                                title="Delete"
-                            >
-                                &times;
-                            </span>
+                            <div style={{ display: 'flex', alignItems: 'center', marginLeft: '10px' }}>
+                                <span 
+                                    className="edit-icon" 
+                                    onClick={() => handleEdit(expense.id)} 
+                                    title="Edit"
+                                    style={{ cursor: 'pointer', marginRight: '5px' }} // Add some space on the right
+                                >
+                                    +
+                                </span>
+                                <span 
+                                    className="delete-icon" 
+                                    onClick={() => handleDelete(expense.id)} 
+                                    title="Delete"
+                                    style={{ cursor: 'pointer' }} // Keep cursor as pointer for delete
+                                >
+                                    &times;
+                                </span>
+                            </div>
                         </li>
                     ))
                 ) : (
