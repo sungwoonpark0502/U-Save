@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import './ExpenseList.css'; // Import the CSS file
+import './ExpenseList.css';
 
 const ExpenseList = ({ token, setToken }) => {
     const [expenses, setExpenses] = useState([]);
@@ -14,7 +14,7 @@ const ExpenseList = ({ token, setToken }) => {
     const [remainingBudget, setRemainingBudget] = useState(0);
     const [percentageUsed, setPercentageUsed] = useState(0);
     const [totalSpent, setTotalSpent] = useState(0);
-    const navigate = useNavigate(); // Hook for navigation
+    const navigate = useNavigate();
 
     useEffect(() => {
         const fetchExpenses = async () => {
@@ -26,7 +26,6 @@ const ExpenseList = ({ token, setToken }) => {
                 });
 
                 const sortedExpenses = response.data.sort((a, b) => new Date(a.date) - new Date(b.date));
-
                 setExpenses(sortedExpenses);
                 setFilteredExpenses(sortedExpenses);
 
@@ -37,6 +36,7 @@ const ExpenseList = ({ token, setToken }) => {
                 setMonths(uniqueMonths);
 
                 calculateTotalSpent(sortedExpenses);
+                calculateBudget(sortedExpenses); // Initial budget calculation
             } catch (error) {
                 console.error('Error fetching expenses:', error);
             }
@@ -72,11 +72,11 @@ const ExpenseList = ({ token, setToken }) => {
         calculateTotalSpent(filtered);
     };
 
-    const calculateBudget = (filtered) => {
+    const calculateBudget = (filtered, budgetInput) => {
         const totalSpent = filtered.reduce((acc, expense) => acc + Number(expense.amount), 0);
-        const remaining = budget - totalSpent;
-        const percentage = budget > 0 ? ((totalSpent / budget) * 100).toFixed(2) : 0;
-
+        const remaining = budgetInput - totalSpent;
+        const percentage = budgetInput > 0 ? ((totalSpent / budgetInput) * 100).toFixed(2) : 0;
+    
         setRemainingBudget(Number(remaining.toFixed(2)));
         setPercentageUsed(percentage);
     };
@@ -87,24 +87,33 @@ const ExpenseList = ({ token, setToken }) => {
     };
 
     const handleBudgetChange = (e) => {
-        setBudget(e.target.value);
-        calculateBudget(filteredExpenses);
+        const newBudget = e.target.value; // Keep the input as a string for now
+        setBudget(newBudget); // Update state with string value
+    
+        // Calculate budget only if the input is not empty
+        if (newBudget !== '') {
+            const numericBudget = parseFloat(newBudget) || 0; // Convert input to number
+            calculateBudget(filteredExpenses, numericBudget);
+        } else {
+            // Handle empty input
+            calculateBudget(filteredExpenses, 0);
+        }
     };
+    
 
     const handleDelete = async (id) => {
-        console.log('Attempting to delete expense with ID:', id); // Log the ID being deleted
-    
+        console.log('Attempting to delete expense with ID:', id);
+
         try {
             const response = await axios.delete(`http://localhost:5003/api/expenses/${id}`, {
                 headers: {
                     'Authorization': `Bearer ${token}`,
                 },
             });
-    
-            console.log('Delete response:', response.data); // Log the response data
-    
+
+            console.log('Delete response:', response.data);
+
             if (response.status === 200) {
-                // Remove the deleted expense from the local state
                 const updatedExpenses = expenses.filter(expense => expense.id !== id);
                 setExpenses(updatedExpenses);
                 setFilteredExpenses(updatedExpenses);
@@ -112,7 +121,7 @@ const ExpenseList = ({ token, setToken }) => {
                 // Recalculate total spent and budget after deletion
                 calculateTotalSpent(updatedExpenses);
                 calculateBudget(updatedExpenses); 
-                console.log('Expense deleted and state updated.'); // Log successful state update
+                console.log('Expense deleted and state updated.');
             }
         } catch (error) {
             console.error('Error deleting expense:', error.response ? error.response.data : error.message);
@@ -120,8 +129,8 @@ const ExpenseList = ({ token, setToken }) => {
     };
 
     const handleLogout = () => {
-        setToken(''); // Clear the token
-        navigate('/login'); // Redirect to login page
+        setToken('');
+        navigate('/login');
     };
 
     return (
@@ -137,7 +146,7 @@ const ExpenseList = ({ token, setToken }) => {
                     ))}
                 </select>
 
-                <label htmlFor="month" style={{ marginLeft: '20px' }}>Month: </label>
+                <label htmlFor="month" style={{ marginLeft: '0px' }}>Month: </label>
                 <select id="month" value={selectedMonth} onChange={handleMonthChange}>
                     <option value="">All</option>
                     {months.map(month => (
@@ -146,14 +155,14 @@ const ExpenseList = ({ token, setToken }) => {
                 </select>
             </div>
 
-            <div style={{ marginBottom: '20px' }}>
+            <div id="budgetButton" style={{ marginBottom: '20px' }}>
                 <label htmlFor="budget">Budget: </label>
                 <input 
                     type="number" 
                     id="budget" 
                     value={budget} 
                     onChange={handleBudgetChange} 
-                    placeholder="Enter budget"
+                    placeholder="$"
                 />
             </div>
 
@@ -178,7 +187,7 @@ const ExpenseList = ({ token, setToken }) => {
                                 onClick={() => handleDelete(expense.id)} 
                                 title="Delete"
                             >
-                                &times; {/* This represents the "X" */}
+                                &times;
                             </span>
                         </li>
                     ))

@@ -1,8 +1,8 @@
 /* src/components/ExpenseList.css */
-.expense-list-container {
+.expense-list {
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: center; /* Center all items */
     justify-content: flex-start; /* Align items to the top */
     height: auto; /* Allow height to adjust based on content */
     min-height: 100vh; /* Ensure it covers full viewport height */
@@ -32,6 +32,9 @@ input {
     font-size: 16px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
+#budgetButton{
+    max-width: 260px;
+}
 
 button {
     background-color: #007aff; /* Apple blue */
@@ -52,12 +55,17 @@ button:hover {
 ul {
     list-style-type: none; /* Remove default list styling */
     padding: 0;
-    text-align: center; /* Center align list items */
+    text-align: left; /* Align list items to the left */
     width: 100%; /* Ensure the list takes full width */
 }
 
 li {
+    display: flex; /* Use flexbox to keep items on the same line */
+    align-items: center; /* Center items vertically */
+    justify-content: space-between; /* Space out items */
     margin-bottom: 10px; /* Space between list items */
+    flex-wrap: nowrap; /* Prevent wrapping to keep items on the same line */
+    width: 100%; /* Ensure the list item takes the full width */
 }
 
 p {
@@ -66,7 +74,6 @@ p {
     text-align: center; /* Center align text */
 }
 
-/* Specific styles for logout button */
 .logout-button {
     margin-top: auto; /* Push it to the bottom */
     background-color: transparent; /* Ensure it's transparent */
@@ -75,7 +82,15 @@ p {
     font-size: 16px; /* Font size for the logout button */
     cursor: pointer; /* Pointer cursor */
     padding: 10px 0; /* Padding for the button */
+    transition: opacity 0.3s; /* Add transition for smooth effect */
+    outline: none; /* Remove default outline */
 }
+
+.logout-button:hover {
+    opacity: 0.5; /* Make the button transparent on hover */
+    background-color: transparent;
+}
+
 .delete-icon {
     color: red; /* Change color to red */
     cursor: pointer; /* Change cursor to pointer */
