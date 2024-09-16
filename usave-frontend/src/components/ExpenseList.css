@@ -4,7 +4,8 @@
     flex-direction: column;
     align-items: center;
     justify-content: flex-start; /* Align items to the top */
-    height: 100vh; /* Full height of viewport */
+    height: auto; /* Allow height to adjust based on content */
+    min-height: 100vh; /* Ensure it covers full viewport height */
     width: 80%; /* Increased width */
     max-width: 1200px; /* Set a max-width for larger screens */
     margin: 0 auto; /* Center the container */
@@ -35,7 +36,7 @@ input {
 button {
     background-color: #007aff; /* Apple blue */
     color: white;
-    padding: 8px; /* Reduced padding for smaller buttons */
+    padding: 8px 12px; /* Adjusted padding for consistency */
     border: none;
     border-radius: 8px;
     cursor: pointer;
@@ -52,6 +53,7 @@ ul {
     list-style-type: none; /* Remove default list styling */
     padding: 0;
     text-align: center; /* Center align list items */
+    width: 100%; /* Ensure the list takes full width */
 }
 
 li {
@@ -66,7 +68,11 @@ p {
 
 /* Specific styles for logout button */
 .logout-button {
-    position: absolute; /* Position relative to the container */
-    top: 10px; /* Place it closer to the top */
-    right: 20px; /* Place it on the right */
+    margin-top: auto; /* Push it to the bottom */
+    background-color: transparent; /* Ensure it's transparent */
+    color: red; /* Change color for visibility */
+    border: none; /* Remove default border */
+    font-size: 16px; /* Font size for the logout button */
+    cursor: pointer; /* Pointer cursor */
+    padding: 10px 0; /* Padding for the button */
 }

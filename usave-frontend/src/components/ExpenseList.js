@@ -1,4 +1,3 @@
-// src/components/ExpenseList.js
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
@@ -94,11 +93,6 @@ const ExpenseList = ({ token, setToken }) => {
         <div className="expense-list-container"> {/* Use the new class for centering */}
             <h2>Expense List</h2>
 
-            {/* Logout button */}
-            <button className="logout-button" onClick={handleLogout}>
-                Logout
-            </button>
-
             <div style={{ marginBottom: '20px' }}>
                 <label htmlFor="year">Year: </label>
                 <select id="year" value={selectedYear} onChange={handleYearChange}>
@@ -150,6 +144,11 @@ const ExpenseList = ({ token, setToken }) => {
                     <li>No expenses found.</li>
                 )}
             </ul>
+
+            {/* Logout button positioned at the bottom */}
+            <button className="logout-button" onClick={handleLogout}>
+                Logout
+            </button>
         </div>
     );
 };
