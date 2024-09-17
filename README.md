@@ -69,12 +69,12 @@ USave is a web-based expense tracking application built with Node.js, Express, a
 
 Ensure that you have the necessary environment variables set for your backend, such as database credentials and JWT secret. You can create a `.env` file in the backend directory with the following format:
 
-```plaintext
-DB_HOST=your_database_host
-DB_USER=your_database_user
-DB_PASSWORD=your_database_password
-DB_NAME=usave
-JWT_SECRET=your_jwt_secret
+  ```plaintext
+  DB_HOST=your_database_host
+  DB_USER=your_database_user
+  DB_PASSWORD=your_database_password
+  DB_NAME=usave
+  JWT_SECRET=your_jwt_secret
 
 ### Usage
 
