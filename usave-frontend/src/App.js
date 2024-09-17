@@ -4,7 +4,7 @@ import AddExpense from './components/AddExpense';
 import ExpenseList from './components/ExpenseList';
 import EditExpense from './components/EditExpense';
 import Register from './components/Register';
-import Login from './components/Login'; // login
+import Login from './components/Login';
 
 const App = () => {
     const [token, setToken] = useState(''); // Token for authenticated user
