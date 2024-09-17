@@ -2,10 +2,13 @@
 
 USave is a web-based expense tracking application built with Node.js, Express, and React. It enables users to manage their finances efficiently by providing features such as budget management, expense tracking, and user authentication.
 
+## Demonstration Video 
+Check out the demonstration video of the NeatNote app: <a href="https://drive.google.com/file/d/1IgkSVOIG4sEo2vwcsaQe4R_hYMLipQH7/view?usp=sharing" target="_blank">Watch the demo video</a>
+
 ## Features
 
 - **User Authentication**: Secure user login and registration with JWT (JSON Web Token) for managing user sessions.
-- **Expense Management**: Users can add, edit, and delete expenses, allowing for comprehensive tracking of financial activity.
+- **Expense Management**: Users can add and delete expenses, allowing for comprehensive tracking of financial activity.
 - **Budget Management**: Users can set a budget and monitor their spending against it, with visual feedback on remaining budget and percentage used.
 - **Filtering**: Filter expenses by year and month to analyze spending patterns.
 - **Responsive Design**: A clean and intuitive UI that is mobile-friendly, providing a seamless experience across devices.
@@ -34,7 +37,6 @@ USave is a web-based expense tracking application built with Node.js, Express, a
 ### Installation
 
 1. **Clone the repository**:
-
    ```bash
    git clone git@github.com:sungwoonpark0502/USave.git
    cd USave
@@ -51,8 +53,8 @@ USave is a web-based expense tracking application built with Node.js, Express, a
    - Configure the database connection:
         - Update the config/db.js file with your MySQL credentials.
    - Start the backend server:
-   ```bash
-   node server.js   
+     ```bash
+     node server.js   
 4. **Set up the Frontend**:
    - Navigate to the frontend directory:
      ```bash
@@ -69,7 +71,6 @@ USave is a web-based expense tracking application built with Node.js, Express, a
 
 Ensure that you have the necessary environment variables set for your backend, such as database credentials and JWT secret. You can create a `.env` file in the backend directory with the following format:
 
-    ```plaintext
     DB_HOST=your_database_host
     DB_USER=your_database_user
     DB_PASSWORD=your_database_password
