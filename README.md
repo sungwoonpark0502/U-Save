@@ -67,7 +67,7 @@ Check out the demonstration video of the USave program: <a href="https://drive.g
      npm start
    - The frontend will be available at http://localhost:3000.
   
-   ### Environment Variables
+### Environment Variables
 
 Ensure that you have the necessary environment variables set for your backend, such as database credentials and JWT secret. You can create a `.env` file in the backend directory with the following format:
 
