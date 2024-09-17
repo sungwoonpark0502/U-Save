@@ -192,7 +192,7 @@ const ExpenseList = ({ token, setToken }) => {
                                     title="Edit"
                                     style={{ cursor: 'pointer', marginRight: '5px' }} // Add some space on the right
                                 >
-                                    +
+                                    {/* Removed the "+" icon */}
                                 </span>
                                 <span 
                                     className="delete-icon" 
