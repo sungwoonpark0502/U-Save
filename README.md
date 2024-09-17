@@ -2,8 +2,14 @@
 
 ## Overview
 
-USave is a finance tracking application designed to help users manage their expenses efficiently. The application provides a user-friendly interface for adding, viewing, editing, and deleting expenses, allowing users to keep track of their financial activities easily. Built with a modern tech stack, USave aims to deliver a seamless experience across both web and mobile platforms.
+USave is a finance tracking application designed to help users manage their expenses efficiently. The application provides a user-friendly interface for adding, viewing, editing, and deleting expenses, allowing users to keep track of their 
+financial activities easily. Built with a modern tech stack, USave aims to deliver a seamless experience across both web and mobile platforms.
 
+## Demonstration Video
+
+Check out the demonstration video of the NeatNote app:
+
+<a href="https://drive.google.com/file/d/1IgkSVOIG4sEo2vwcsaQe4R_hYMLipQH7/view?usp=sharing" target="_blank">Watch the demo video</a>
 ## Features
 
 - **User Authentication**: Secure login and registration process for users.
