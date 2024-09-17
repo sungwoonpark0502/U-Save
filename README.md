@@ -3,7 +3,7 @@
 USave is a web-based expense tracking application built with Node.js, Express, and React. It enables users to manage their finances efficiently by providing features such as budget management, expense tracking, and user authentication.
 
 ## Demonstration Video 
-Check out the demonstration video of the NeatNote app: <a href="https://drive.google.com/file/d/1IgkSVOIG4sEo2vwcsaQe4R_hYMLipQH7/view?usp=sharing" target="_blank">Watch the demo video</a>
+Check out the demonstration video of the USave program: <a href="https://drive.google.com/file/d/1IgkSVOIG4sEo2vwcsaQe4R_hYMLipQH7/view?usp=sharing" target="_blank">Watch the demo video</a>
 
 ## Features
 
