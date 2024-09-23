@@ -92,7 +92,6 @@ The backend exposes the following API endpoints:
 - **POST** `/api/login`: Authenticate a user and receive a JWT token.
 - **GET** `/api/expenses`: Fetch all expenses for the authenticated user.
 - **POST** `/api/expenses`: Create a new expense.
-- **PUT** `/api/expenses/:id`: Update an existing expense.
 - **DELETE** `/api/expenses/:id`: Delete an expense.
 
 ### Contribution
